@@ -1,0 +1,64 @@
+/* make the customizations */
+
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";
+
+//custom classes
+img{
+	max-width: 100%;
+}
+.object-cover{
+	object-fit: cover;
+}
+.bg-black-gradient {
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.8) 70%);
+}
+.listing-items {
+	.card-img {
+		@media(max-width: 767px){
+			height: 300px;		
+		}
+	}
+}
+
+
+.single-item-details {
+	img{
+		height: auto;
+	}
+	.has-text-align-center, .mb-center {
+		text-align: center;;
+		width: 100%;
+		display: inline-block;
+	}
+	.maxbutton {
+		padding: 10px 15px;
+		margin: 5px;
+		display: inline-block;
+		color: #fff;
+		text-decoration: none;
+		border-radius: 5px;
+		background: $success;
+		&:hover {
+			opacity: .8;
+		}
+	}
+	.maxbutton.maxbutton-g-direct-1 {
+		background: $success;
+	}
+	.maxbutton.maxbutton-mega-nz {
+		background: $indigo;
+	}
+	.maxbutton.maxbutton-dood-stream {
+		background: $info;
+	}
+	.maxbutton.maxbutton-rank-uploads {
+		background: $primary;
+	}
+	.maxbutton.maxbutton-g-drive {
+		background: $teal;
+	}
+	.maxbutton.maxbutton-drop-galaxy {
+		background: $orange;
+	}
+}
