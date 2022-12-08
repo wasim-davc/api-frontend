@@ -6,9 +6,9 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 	<url>
-	  <loc>https://movies-king.herokuapp.com/sitemap_pages.xml</loc>
+	  <loc>https://movieskingpro.onrender.com/sitemap_pages.xml</loc>
 	</url>
 	<url>
-	  <loc>https://movies-king.herokuapp.com/sitemap_posts.xml</loc>
+	  <loc>https://movieskingpro.onrender.com/sitemap_posts.xml</loc>
 	</url>
 </urlset>
