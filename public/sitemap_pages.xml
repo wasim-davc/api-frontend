@@ -6,27 +6,27 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 	<url>
-	  <loc>https://movies-king.herokuapp.com/</loc>
+	  <loc>https://movieskingpro.onrender.com/</loc>
 	</url>
 	<url>
-	  <loc>https://movies-king.herokuapp.com/category/korean-series</loc>
+	  <loc>https://movieskingpro.onrender.com/category/korean-series</loc>
 	</url>
 	<url>
-	  <loc>https://movies-king.herokuapp.com/category/dual-audio-movies</loc>
+	  <loc>https://movieskingpro.onrender.com/category/dual-audio-movies</loc>
 	</url>
 	<url>
-	  <loc>https://movies-king.herokuapp.com/category/web-series</loc>
+	  <loc>https://movieskingpro.onrender.com/category/web-series</loc>
 	</url>
 	<url>
-	  <loc>https://movies-king.herokuapp.com/hindi-fan-dubbed</loc>
+	  <loc>https://movieskingpro.onrender.com/category/hindi-fan-dubbed</loc>
 	</url>
 	<url>
-	  <loc>https://movies-king.herokuapp.com/category/hindi-tv-show</loc>
+	  <loc>https://movieskingpro.onrender.com/category/hindi-tv-show</loc>
 	</url>
 	<url>
-	  <loc>https://movies-king.herokuapp.com/category/480p-movies</loc>
+	  <loc>https://movieskingpro.onrender.com/category/480p-movies</loc>
 	</url>
 	<url>
-	  <loc>https://movies-king.herokuapp.com/category/720p-movies</loc>
+	  <loc>https://movieskingpro.onrender.com/category/720p-movies</loc>
 	</url>
 </urlset>
