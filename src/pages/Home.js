@@ -44,13 +44,6 @@ export default function Home() {
       setTotalPage(parseInt(response.headers.get('totalPages')));
       setItems(result); 
 
-      //scroll to result
-      if(params.categorySlug || params.searchText){
-        setTimeout(()=> {
-          searchItems.current?.scrollIntoView({behavior: "smooth"});
-        }, 500);
-      }
-
     } 
     catch (error) {
       console.log("error", error);
@@ -74,10 +67,22 @@ export default function Home() {
         setUrl(defaultUrl + "&categories=" + data[0].id);
       });
       setPage(1);
+
+      //scroll to result
+      if(params.categorySlug || params.searchText){
+        searchItems.current?.scrollIntoView({behavior: "smooth"});
+      }
+
     }
     else if(params.searchText){
       setUrl(defaultUrl + "&search="+params.searchText);
       setPage(1);
+
+      //scroll to result
+      if(params.categorySlug || params.searchText){
+        searchItems.current?.scrollIntoView({behavior: "smooth"});
+      }
+      
     }
     else{
       setUrl(defaultUrl);  
