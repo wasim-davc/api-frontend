@@ -148,7 +148,7 @@ export default function Home() {
           <Row className="g-md-4 g-2 listing-items" ref={searchItems}>
             {items.map(item => (
               <Col lg="3" md="4" xs="6" key={item.id}>
-                <Link to={"/download/"+item.slug}>
+                <Link to={"/download/" + ((site === 1) ? "hollywood/" : "bollywood/") + item.slug}>
                   <Card className="text-white">
                     {/* <Card.Img src="/assets/images/blog.jpg" alt="Card image" width="350" height="350" className="object-cover" /> */}
                     <Card.Img src={typeof item.yoast_head_json.og_image != "undefined" ? item.yoast_head_json.og_image[0].url : ""} alt="Card image" width="350" height="350" className="object-cover" />

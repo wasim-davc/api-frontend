@@ -26,6 +26,7 @@ class App extends Component {
               <Route path="category/:categorySlug" element={<Home />} />
               <Route path="search/:searchText" element={<Home />} />
               <Route path="download/:slug" element={<Download />} />
+              <Route path="download/:site/:slug" element={<Download />} />
               <Route path="*" element={<Page404 />} />
             </Route>
           </Routes>

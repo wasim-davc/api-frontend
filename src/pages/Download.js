@@ -17,11 +17,25 @@ export default function Download(props) {
   const [isRelatedItemsLoaded, setIsRelatedItemsLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
   const [site, setSite] = useState(() => {
-    var currentSite = parseInt(localStorage.getItem("site"));
-    if(currentSite){
-      return currentSite;
+
+    var currentSiteInBrowser = parseInt(localStorage.getItem("site"));
+
+    if(params.site === "bollywood"){
+      localStorage.setItem("site", 2);
+
+      if(!currentSiteInBrowser){
+        window.location.reload();
+      }
+
+      return 2;
     }
     else{
+      localStorage.setItem("site", 1);
+
+      if(!currentSiteInBrowser){
+        window.location.reload();
+      }
+
       return 1;
     }
   });
@@ -72,6 +86,7 @@ export default function Download(props) {
       fetchData(defaultUrl+"&categories="+categories, "relatedItems");
     }
   }, [categories]);
+
 
   if (!isDetailsLoaded) {
     return (
@@ -181,7 +196,7 @@ export default function Download(props) {
               <Row className="g-2 listing-items">
                 {relatedItems.map(item => (
                   <Col xs="6" key={item.id}>
-                    <Link to={"/download/"+item.slug} onClick={handleRelatedItemLink}>
+                    <Link to={"/download/" + ((site === 1) ? "hollywood/" : "bollywood/") + item.slug} onClick={handleRelatedItemLink}>
                       <Card className="text-white">
                         {/*<Card.Img src="/assets/images/blog.jpg" alt="Card image" width="350" height="350" className="object-cover" />*/}
                         <Card.Img src={typeof item.yoast_head_json.og_image != "undefined" ? item.yoast_head_json.og_image[0].url : ""} alt="Card image" width="350" height="350" className="object-cover" />
