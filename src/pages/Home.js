@@ -266,7 +266,7 @@ export default function Home() {
 
                     {/* <Card.Img src="/assets/images/blog.jpg" alt="Card image" width="350" height="350" className="object-cover" /> */}
                     
-                    <Card.Img src={typeof item.yoast_head_json.og_image != "undefined" ? item.yoast_head_json.og_image[0].url : ""} alt="Card image" width="350" height="350" className="object-cover" />
+                    <Card.Img src={typeof yoast_head_json != "undefined" && typeof item.yoast_head_json.og_image != "undefined" ? item.yoast_head_json.og_image[0].url : ""} alt="Card image" width="350" height="350" className="object-cover" />
                     
                     <Card.ImgOverlay className="d-flex flex-column justify-content-end bg-black-gradient">
                       
