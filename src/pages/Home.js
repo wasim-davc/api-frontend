@@ -44,6 +44,8 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   
   const [items, setItems] = useState([]);
+
+  const [featuredImages, setFeaturedImages] = useState({});
   
   const searchItems = useRef(null);
 
@@ -62,12 +64,36 @@ export default function Home() {
       const result = await response.json();
 
       
-      //set data
-      setIsLoaded(true);
+      const promises = result.map(async (item) => {
+
+        let key = item.featured_media;
+
+        //get fetured image
+        let mediaResponse = await fetch(api_domain + "/media?site=" + site + "&include=" + key);
       
-      setTotalPage(parseInt(response.headers.get('totalPages')));
-      
-      setItems(result); 
+        let mediaResult = await mediaResponse.json();
+
+        
+        //set fetured image
+        let newFeaturedImages = featuredImages;
+
+        newFeaturedImages[key] = mediaResult[0].guid.rendered;
+
+        setFeaturedImages(newFeaturedImages);
+
+      });
+
+
+      Promise.all(promises).then(function(results) {
+        
+        //set data
+        setIsLoaded(true);
+        
+        setTotalPage(parseInt(response.headers.get('totalPages')));
+        
+        setItems(result); 
+
+      });
 
     } 
 
@@ -78,7 +104,7 @@ export default function Home() {
     }
 
   };
-
+  
 
   const handleNext = () => {
 
@@ -266,7 +292,7 @@ export default function Home() {
 
                     {/* <Card.Img src="/assets/images/blog.jpg" alt="Card image" width="350" height="350" className="object-cover" /> */}
                     
-                    <Card.Img src={typeof yoast_head_json != "undefined" && typeof item.yoast_head_json.og_image != "undefined" ? item.yoast_head_json.og_image[0].url : ""} alt="Card image" width="350" height="350" className="object-cover" />
+                    <Card.Img src={featuredImages[item.featured_media]} alt="Card image" width="350" height="350" className="object-cover" />
                     
                     <Card.ImgOverlay className="d-flex flex-column justify-content-end bg-black-gradient">
                       

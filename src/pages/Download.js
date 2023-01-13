@@ -19,6 +19,8 @@ export default function Download(props) {
 
   const [relatedItems, setRelatedItems] = useState([]);
 
+  const [featuredImages, setFeaturedImages] = useState({});
+
   const [details, setDetails] = useState([]);
 
   const [isDetailsLoaded, setIsDetailsLoaded] = useState(false);
@@ -101,10 +103,36 @@ export default function Download(props) {
       }
       
       else if(type === "relatedItems"){
+
+        const promises = result.map(async (item) => {
+
+          let key = item.featured_media;
+
+          //get fetured image
+          let mediaResponse = await fetch(api_domain + "/media?site=" + site + "&include=" + key);
         
-        setRelatedItems(result);
+          let mediaResult = await mediaResponse.json();
+
+          
+          //set fetured image
+          let newFeaturedImages = featuredImages;
+
+          newFeaturedImages[key] = mediaResult[0].guid.rendered;
+
+          setFeaturedImages(newFeaturedImages);
+
+        });
+
+
+        Promise.all(promises).then(function(results) {
+          
+          //set data
+          setRelatedItems(result);
         
-        setIsRelatedItemsLoaded(true);
+          setIsRelatedItemsLoaded(true);
+
+        });
+        
       }
 
     } 
@@ -322,7 +350,7 @@ export default function Download(props) {
                 
                         {/*<Card.Img src="/assets/images/blog.jpg" alt="Card image" width="350" height="350" className="object-cover" />*/}
                 
-                        <Card.Img src={typeof item.yoast_head_json.og_image != "undefined" ? item.yoast_head_json.og_image[0].url : ""} alt="Card image" width="350" height="350" className="object-cover" />
+                        <Card.Img src={featuredImages[item.featured_media]} alt="Card image" width="350" height="350" className="object-cover" />
                 
                         <Card.ImgOverlay className="d-flex flex-column justify-content-end bg-black-gradient">
                 
