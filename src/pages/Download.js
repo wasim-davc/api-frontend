@@ -34,7 +34,22 @@ export default function Download(props) {
 
     var currentSiteInBrowser = parseInt(localStorage.getItem("site"));
 
-    if(params.site === "bollywood"){
+    if(params.site === "anime"){
+
+      localStorage.setItem("site", 3);
+
+
+      if(!currentSiteInBrowser){
+
+        window.location.reload();
+
+      }
+
+      return 3;
+
+    }
+
+    else if(params.site === "bollywood"){
 
       localStorage.setItem("site", 2);
 
@@ -109,7 +124,7 @@ export default function Download(props) {
           let key = item.featured_media;
 
           //get fetured image
-          let mediaResponse = await fetch(api_domain + "/media?site=" + site + "&include=" + key);
+          let mediaResponse = await fetch(api_domain + "/media?site=" + site + "&per_page=4&include=" + key);
         
           let mediaResult = await mediaResponse.json();
 
@@ -117,7 +132,7 @@ export default function Download(props) {
           //set fetured image
           let newFeaturedImages = featuredImages;
 
-          newFeaturedImages[key] = mediaResult[0].guid.rendered;
+          newFeaturedImages[key] = ((typeof mediaResult[0] !== "undefined") ? mediaResult[0].media_details.sizes.thumbnail.source_url : "");
 
           setFeaturedImages(newFeaturedImages);
 
@@ -344,7 +359,7 @@ export default function Download(props) {
                 
                   <Col xs="6" key={item.id}>
                 
-                    <Link to={"/download/" + ((site === 1) ? "hollywood/" : "bollywood/") + item.slug} onClick={handleRelatedItemLink}>
+                    <Link to={"/download/" + ((site === 1) ? "hollywood/" : ((site === 2) ? "bollywood/" : "anime/")) + item.slug} onClick={handleRelatedItemLink}>
                 
                       <Card className="text-white">
                 

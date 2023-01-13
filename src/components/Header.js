@@ -82,22 +82,13 @@ export default function Header() {
   }
   const handleChangeSite = (event) => {
 
-    event.preventDefault();
-
     // 1 hollywood
     // 2 bollywood
+    // 3 anime
 
-    if(site === 1 ){
+    event.preventDefault();
 
-      localStorage.setItem("site", 2); 
-
-    }
-
-    else{
-
-      localStorage.setItem("site", 1); 
-
-    }
+    localStorage.setItem("site", event.target.getAttribute("site"));
 
     window.location.href = window.location.origin;
 
@@ -112,9 +103,15 @@ export default function Header() {
 
     }
 
-    else{
+    else if(site === 2){
 
       var categories = "4,2,3,31,79";  
+
+    }
+
+    else{
+
+      var categories = "6,13,7,10,16";
 
     }
 
@@ -173,8 +170,48 @@ export default function Header() {
           </Col>
           
           <Col xs="12" className="text-center pb-4">
+
+            {
+
+              (site == 1)
+
+              ?
+
+                <>
+
+                  <Button className="me-2" variant="dark" size="md" site="2" onClick={handleChangeSite}>Bollywood</Button>
+
+                  <Button variant="dark" size="md" site="3" onClick={handleChangeSite}>Anime</Button>
+
+                </>
+
+              :
+
+              (site == 2)
+
+              ?
+
+                <>
+
+                  <Button className="me-2" variant="dark" size="md" site="1" onClick={handleChangeSite}>Hollywood</Button>
+
+                  <Button variant="dark" size="md" site="3" onClick={handleChangeSite}>Anime</Button>
+
+                </>
+
+              :
+
+
+                <>
+
+                  <Button className="me-2" variant="dark" size="md" site="1" onClick={handleChangeSite}>Hollywood</Button>
+
+                  <Button variant="dark" size="md" site="2" onClick={handleChangeSite}>Bollywood</Button>
+
+                </>
+
+            }
           
-            <Button variant="dark" size="md" onClick={handleChangeSite}>{ ((site===1) ? "Bollywood" : "Hollywood") }</Button>
           
           </Col>
           

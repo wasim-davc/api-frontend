@@ -33,7 +33,7 @@ export default function Home() {
 
   });
 
-  const defaultUrl = "/posts?site="+site+"&per_page=20&orderby=modified&order=desc";
+  const defaultUrl = "/posts?site="+site+"&per_page=10&orderby=modified&order=desc";
 
   const [url, setUrl] = useState(defaultUrl);
   
@@ -77,7 +77,7 @@ export default function Home() {
         //set fetured image
         let newFeaturedImages = featuredImages;
 
-        newFeaturedImages[key] = mediaResult[0].guid.rendered;
+        newFeaturedImages[key] = ((typeof mediaResult[0] !== "undefined") ? mediaResult[0].media_details.sizes.thumbnail.source_url : "");
 
         setFeaturedImages(newFeaturedImages);
 
@@ -286,7 +286,7 @@ export default function Home() {
 
               <Col lg="3" md="4" xs="6" key={item.id}>
 
-                <Link to={"/download/" + ((site === 1) ? "hollywood/" : "bollywood/") + item.slug}>
+                <Link to={"/download/" + ((site === 1) ? "hollywood/" : ((site === 2) ? "bollywood/" : "anime/")) + item.slug}>
 
                   <Card className="text-white">
 
