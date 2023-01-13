@@ -119,34 +119,38 @@ export default function Download(props) {
       
       else if(type === "relatedItems"){
 
-        const promises = result.map(async (item) => {
+        const featuredImagesIds = new Array();
 
-          let key = item.featured_media;
+        result.map((item) => {
 
-          //get fetured image
-          let mediaResponse = await fetch(api_domain + "/media?site=" + site + "&per_page=4&include=" + key);
-        
-          let mediaResult = await mediaResponse.json();
+          featuredImagesIds.push(item.featured_media);
 
-          
+        });
+
+
+        //get fetured image
+        const mediaResponse = await fetch(api_domain + "/media?site=" + site + "&include=" + featuredImagesIds);
+      
+        const mediaResult = await mediaResponse.json();
+
+        mediaResult.map((item) => {
+
           //set fetured image
           let newFeaturedImages = featuredImages;
 
-          newFeaturedImages[key] = ((typeof mediaResult[0] !== "undefined") ? mediaResult[0].media_details.sizes.thumbnail.source_url : "");
+          let key = item.id;
+
+          newFeaturedImages[key] = ((typeof item !== null && item.media_details.sizes.thumbnail !== undefined) ? item.media_details.sizes.thumbnail.source_url : "");
 
           setFeaturedImages(newFeaturedImages);
 
         });
 
 
-        Promise.all(promises).then(function(results) {
-          
-          //set data
-          setRelatedItems(result);
-        
-          setIsRelatedItemsLoaded(true);
-
-        });
+        //set data
+        setRelatedItems(result);
+      
+        setIsRelatedItemsLoaded(true);
         
       }
 
@@ -173,7 +177,7 @@ export default function Download(props) {
     //fetch data
     if(categories.length > 0){
 
-      fetchData(defaultUrl+"&categories="+categories, "relatedItems");
+      fetchData(defaultUrl+"&per_page=4&categories="+categories, "relatedItems");
 
     }
 
