@@ -85,7 +85,7 @@ export default function Home() {
 
         let key = item.id;
 
-        newFeaturedImages[key] = ((typeof item !== null && item.media_details.sizes.thumbnail !== undefined) ? item.media_details.sizes.thumbnail.source_url : "");
+        newFeaturedImages[key] = ((typeof item !== null && item.media_details.sizes['post-thumbnail'] !== undefined) ? item.media_details.sizes['post-thumbnail'].source_url : "");
 
         setFeaturedImages(newFeaturedImages);
 
