@@ -140,7 +140,7 @@ export default function Download(props) {
 
           let key = item.id;
 
-          newFeaturedImages[key] = ((typeof item !== null && item.media_details.sizes['post-thumbnail'] !== undefined) ? item.media_details.sizes['post-thumbnail'].source_url : "");
+          newFeaturedImages[key] = ((typeof item !== null && item.media_details.sizes.full.source_url !== undefined) ? item.media_details.sizes.full.source_url : "/assets/images/thumbnail.jpg");
 
           setFeaturedImages(newFeaturedImages);
 
