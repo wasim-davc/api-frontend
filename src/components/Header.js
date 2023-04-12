@@ -77,7 +77,7 @@ export default function Header() {
 
     navigate('/search/'+searchText);
 
-    setSearchText("");
+    //setSearchText("");
 
   }
   const handleChangeSite = (event) => {
