@@ -99,7 +99,7 @@ export default function Header() {
     //fetch categories
     if(site === 1){
 
-      var categories = "207248,693,761,145991,743,703,705";
+      var categories = "24,155,6,5,4,21,52,68";
 
     }
 
